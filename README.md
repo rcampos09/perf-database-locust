@@ -1,4 +1,3 @@
-
 # Perf-Test Stack: PostgreSQL Performance Testing
 
 Este proyecto fue creado por **Rodrigo Campos Tapia** ([@dontester_](https://twitter.com/dontester_)) con fines **100% prácticos** para realizar pruebas de rendimiento enfocadas en bases de datos **PostgreSQL**, integrando herramientas modernas de monitoreo, observabilidad y generación de carga.
@@ -137,6 +136,43 @@ data:
 
 ---
 
+## 📊 Importar Dashboard de PostgreSQL en Grafana
+
+1. Abre la interfaz de Grafana (`http://localhost:3000`)
+2. Menú izquierdo → **Dashboards** → **Import**
+3. En el campo de ID, escribe `9628` y haz clic en **Load**
+4. Selecciona tu fuente de datos Prometheus y haz clic en **Import**
+
+> Dashboard recomendado: **PostgreSQL Database (via Prometheus)**  
+> Enlace: [https://grafana.com/grafana/dashboards/9628](https://grafana.com/grafana/dashboards/9628)
+
+---
+
+## 🔌 Conectar Prometheus como Data Source en Grafana
+
+1. Menú izquierdo → ⚙️ **Configuration** → **Data Sources**
+2. Clic en **Add data source**
+3. Selecciona **Prometheus**
+4. En el campo `URL`:
+
+   - Si estás dentro del cluster:
+     ```
+     http://prometheus.perf-test.svc.cluster.local:9090
+     ```
+
+   - Si estás fuera, usa port-forward:
+     ```bash
+     kubectl port-forward svc/prometheus -n perf-test 9090:9090
+     ```
+     Y luego en Grafana:
+     ```
+     http://localhost:9090
+     ```
+
+5. Clic en **Save & test**
+
+---
+
 ## 🧪 ¡Haz tus pruebas!
 
 Con todo desplegado, accede a Locust, inicia la carga, y visualiza el comportamiento del sistema en tiempo real desde Grafana.
@@ -157,6 +193,6 @@ Con todo desplegado, accede a Locust, inicia la carga, y visualiza el comportami
 
 **Rodrigo Campos Tapia**
 
-- 🐦 [@dontester_](https://twitter.com/dontester_) – Twitter
-- 📷 [@dontester_](https://www.instagram.com/dontester_/) – Instagram
-- 💼 [LinkedIn](https://www.linkedin.com/in/rcampostapia/) – Perfil profesional
+- 🐦 [@dontester_](https://twitter.com/dontester_)
+- 📷 [@dontester_](https://www.instagram.com/dontester_/)
+- 💼 [LinkedIn](https://www.linkedin.com/in/rcampostapia/)
