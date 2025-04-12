@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust
+  namespace: perf-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: locust
+  template:
+    metadata:
+      labels:
+        app: locust
+    spec:
+      containers:
+        - name: locust
+          image: locust:latest
+          ports:
+            - containerPort: 8089
+          env:
+            - name: LOCUST_HOST
+              value: "http://postgres.perf-test.svc.cluster.local:5432"

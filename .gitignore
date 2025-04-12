@@ -1,0 +1,8 @@
+# Ignorar archivos específicos de macOS
+.DS_Store
+
+# Otros posibles archivos o directorios a ignorar, como entornos virtuales, logs, etc.
+*.log
+*.env
+*.bak
+*.swp

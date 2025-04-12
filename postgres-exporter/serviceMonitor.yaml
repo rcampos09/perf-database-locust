@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: postgres-exporter-monitor
+  namespace: perf-test
+  labels:
+    release: prometheus  # Asegúrate de que el valor coincida con el label de Prometheus
+spec:
+  jobLabel: postgres-exporter
+  selector:
+    matchLabels:
+      app: postgres-exporter  # Coincide con la label del Service
+  namespaceSelector:
+    matchNames:
+      - perf-test
+  endpoints:
+    - port: http
+      interval: 15s  # Cada 15 segundos se recolectan las métricas
